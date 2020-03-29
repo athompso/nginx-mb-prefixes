@@ -9,7 +9,7 @@ printf '16395\n55073\n30028\n6939\n6327' >> "${TD}/aslist"
 
 for ASN in $(cat "${TD}/aslist"); do
         (
-        curl -s "http://lg.les.net/cgi-bin/bgplg?cmd=show+ip+bgp+source-as&req=${ASN}" > "${TD}/$ASN.prefixes-raw"
+        curl -s "http://lg.XXX.YYY/cgi-bin/bgplg?cmd=show+ip+bgp+source-as&req=${ASN}" > "${TD}/$ASN.prefixes-raw"
         awk '$1 ~ /^I/ && $2 ~ /^[[:xdigit:]\/:]+/ {print $2,0,";"}' "${TD}/${ASN}.prefixes-raw" > "${TD}/$ASN.prefixes"
         ) &
         #sleep 1  # don't piss off the MBIX maintainers :-)
